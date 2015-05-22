@@ -25,11 +25,6 @@ ll power(ll a, ll n, ll mod)
 /* n - 1 = 2^s * d */
 bool miller_rabin_primality_test_a_number(ll a, ll s, ll d, ll n)
 {
-	while (d % 2 == 0) {
-		d /= 2;
-		s += 1;
-	}
-
 	a = power(a, d, n);
 
 	if (a == 1) {
@@ -50,12 +45,10 @@ bool miller_rabin_primality_test(ll n)
 {
 	ll s = 0, d = n - 1;
 
-	while (d % 2 == 0) {
-		d /= 2;
-		s += 1;
+	while (!(d & 1)) {
+		d >>= 1;
+		s++;
 	}
-
-	std::cout << s << " " << d << std::endl;
 
 	if (miller_rabin_primality_test_a_number(2, s, d, n) == false) {
 		return false;
