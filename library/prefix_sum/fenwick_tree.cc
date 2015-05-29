@@ -17,6 +17,9 @@ public:
 		tree.resize(n + 1);
 	}
 
+	/* data: 0-based index, tree: 1-based index
+	   Hence we will shift 1 position in update function
+	*/
 	FenwickTree(std::vector<ll> data) {
 		tree.resize(data.size() + 1);
 
@@ -25,12 +28,14 @@ public:
 		}
 	}
 
+	/* query data[n], 0-based index */
 	void update(int n, ll val) {
 		for (int i = n + 1; i < tree.size(); i += (i & -i)) {
 			tree[i] += val;
 		}
 	}
 
+	/* query data[0] + ... + data[n1], 0-based index */
 	ll query(int n) {
 		ll val = 0;
 		for (int i = n + 1; i > 0; i -= (i & -i)) {
@@ -39,11 +44,13 @@ public:
 		return val;
 	}
 
+	/* query data[n0] + ... + data[n1], 0-based index */
 	ll query(int n0, int n1) {
 		return query(n1) - query(n0 - 1);
 	}
 
 private:
+	/* The tree is 1-based index, tree[0] is set to 0 */
 	std::vector<ll> tree;
 
 } FenwickTree;
