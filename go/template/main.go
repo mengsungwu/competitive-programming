@@ -1,6 +1,12 @@
 
 package main
 
+import (
+    "bufio"
+    "fmt"
+    "os"
+)
+
 var stdin *bufio.Reader
 
 func init() {
@@ -8,5 +14,5 @@ func init() {
 }
 
 func main() {
-    
+
 }
