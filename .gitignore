@@ -1,4 +1,8 @@
+# for visual studio
 Debug/
 *.sdf
 *.opensdf
 *.suo
+
+# for executable
+*.exe
